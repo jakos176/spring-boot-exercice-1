@@ -1,22 +1,28 @@
-package domain;
+package com.example.springbootexercice1.domain.model;
+
+import lombok.Builder;
+import lombok.Getter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
 @Table(name = "t_rates")
-public class Rates {
+@Builder
+@Getter
+public class Rate {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "BRAND_ID")
-    private Long branId;
+    private Long brandId;
 
     @Column(name = "PRODUCT_ID")
     private Long productId;
