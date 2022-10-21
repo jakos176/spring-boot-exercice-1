@@ -15,5 +15,5 @@ public interface RateService {
 
     Long deleteRate(Long id);
 
-    List<Rate> findByDatesAndBrandIdAndProductId(Date startDate, Date endDate, Long brandId, Long productId);
+    List<Rate> findByDatesAndBrandIdAndProductId(Date date,  Long brandId, Long productId);
 }

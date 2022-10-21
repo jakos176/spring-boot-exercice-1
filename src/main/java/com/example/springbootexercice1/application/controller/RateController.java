@@ -31,10 +31,8 @@ public class RateController {
     }
 
     @GetMapping(value = "/findByDate", produces = MediaType.APPLICATION_JSON_VALUE)
-    void addRate(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
-                 @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate, @RequestParam Long brandId,
-                 @RequestParam Long productId) {
-        List<Rate> byDate = rateService.findByDatesAndBrandIdAndProductId(startDate, endDate, brandId, productId);
+    void addRate(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date date, @RequestParam Long brandId, @RequestParam Long productId) {
+        List<Rate> byDate = rateService.findByDatesAndBrandIdAndProductId(date, brandId, productId);
 
         System.out.println("hola");
 

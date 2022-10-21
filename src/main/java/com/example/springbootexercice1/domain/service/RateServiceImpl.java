@@ -40,8 +40,7 @@ public class RateServiceImpl implements RateService {
     }
 
     @Override
-    public List<Rate> findByDatesAndBrandIdAndProductId(Date startDate, Date endDate, Long brandId, Long productId) {
-        return rateRepository.
-                findAllByStartDateLessThanEqualAndEndDateGreaterThanEqualAndBrandIdAndProductId(startDate, endDate, brandId, productId);
+    public List<Rate> findByDatesAndBrandIdAndProductId(Date date, Long brandId, Long productId) {
+        return rateRepository.findAllBetweenDatesAndBrandIdAndProductId(date, brandId, productId);
     }
 }
