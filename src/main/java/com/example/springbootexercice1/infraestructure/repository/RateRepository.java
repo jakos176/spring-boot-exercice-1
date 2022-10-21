@@ -15,5 +15,5 @@ public interface RateRepository extends CrudRepository<Rate, Long> {
             "AND end_date AND brand_id = :brandId AND product_id = :productId", nativeQuery = true)
     List<Rate> findAllBetweenDatesAndBrandIdAndProductId(Date date, Long brandId, Long productId);
 
-//    List<Rate> findAllByStartDateLessThanEqualAndEndDateGreaterThanEqualAndBrandIdAndProductId(Date startDate, Date endDate, Long brandId, Long productId);
+    //    List<Rate> findAllByStartDateLessThanEqualAndEndDateGreaterThanEqualAndBrandIdAndProductId(Date startDate, Date endDate, Long brandId, Long productId);
 }

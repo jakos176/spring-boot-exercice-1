@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RateServiceImpl implements RateService {
@@ -19,24 +20,34 @@ public class RateServiceImpl implements RateService {
     }
 
     @Override
-    public Long addRate(Rate rate) {
-        Rate save = rateRepository.save(rate);
-        return save.getId();
+    public Rate addRate(Rate rate) {
+        return rateRepository.save(rate);
     }
 
     @Override
-    public Long getRate(Rate rate) {
-        return null;
+    public Optional<Rate> findRateById(Long id) {
+        return rateRepository.findById(id);
     }
 
     @Override
-    public Long updateRate(Long id) {
-        return null;
+    public Optional<Rate> updatePriceRate(Long id, Integer price) {
+        Optional<Rate> rateToUpdate = rateRepository.findById(id);
+
+        boolean rateExists = rateToUpdate.isPresent();
+        if (rateExists) {
+            Rate rate = rateToUpdate.get();
+            rate.setPrice(price);
+            rateRepository.save(rate);
+        }
+
+        return rateToUpdate;
     }
 
     @Override
-    public Long deleteRate(Long id) {
-        return null;
+    public Optional<Rate> deleteRate(Long id) {
+        Optional<Rate> rateToDelete = rateRepository.findById(id);
+        rateToDelete.ifPresent(rateRepository::delete);
+        return rateToDelete;
     }
 
     @Override

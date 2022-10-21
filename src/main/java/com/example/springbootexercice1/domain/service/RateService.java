@@ -4,16 +4,17 @@ import com.example.springbootexercice1.domain.model.Rate;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public interface RateService {
 
-    Long addRate(Rate rate);
+    Rate addRate(Rate rate);
 
-    Long getRate(Rate rate);
+    Optional<Rate> findRateById(Long id);
 
-    Long updateRate(Long id);
+    Optional<Rate> updatePriceRate(Long id, Integer price);
 
-    Long deleteRate(Long id);
+    Optional<Rate> deleteRate(Long id);
 
-    List<Rate> findByDatesAndBrandIdAndProductId(Date date,  Long brandId, Long productId);
+    List<Rate> findByDatesAndBrandIdAndProductId(Date date, Long brandId, Long productId);
 }

@@ -10,7 +10,8 @@ import javax.validation.constraints.NotNull;
 @Getter
 public class AddRateRequest {
 
-    @NotNull private Rate rate;
+    @NotNull
+    private final Rate rate;
 
     @JsonCreator
     public AddRateRequest(@JsonProperty("rate") final Rate rate) {
