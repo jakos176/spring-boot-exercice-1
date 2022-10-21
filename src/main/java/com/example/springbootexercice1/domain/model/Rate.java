@@ -1,7 +1,9 @@
 package com.example.springbootexercice1.domain.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +16,8 @@ import java.util.Date;
 @Entity
 @Table(name = "t_rates")
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 public class Rate {
 
