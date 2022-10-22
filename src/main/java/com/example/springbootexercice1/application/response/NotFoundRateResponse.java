@@ -6,7 +6,8 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class AddRateResponse {
+public class NotFoundRateResponse implements RateResponse{
 
-    private Long idRate;
+    private Long id;
+
 }

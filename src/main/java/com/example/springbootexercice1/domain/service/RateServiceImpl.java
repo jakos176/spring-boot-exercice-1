@@ -1,7 +1,11 @@
 package com.example.springbootexercice1.domain.service;
 
+import com.example.springbootexercice1.domain.model.Currency;
 import com.example.springbootexercice1.domain.model.Rate;
+import com.example.springbootexercice1.infraestructure.repository.CurrencyRepository;
+import com.example.springbootexercice1.infraestructure.repository.CurrencyRepositoryImpl;
 import com.example.springbootexercice1.infraestructure.repository.RateRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +18,17 @@ public class RateServiceImpl implements RateService {
 
     private final RateRepository rateRepository;
 
-    @Autowired
-    public RateServiceImpl(RateRepository rateRepository) {
+    private final CurrencyRepository currencyRepository;
+
+
+    public RateServiceImpl(RateRepository rateRepository, CurrencyRepository currencyRepository) {
         this.rateRepository = rateRepository;
+        this.currencyRepository = currencyRepository;
     }
 
     @Override
     public Rate addRate(Rate rate) {
+        List<Currency> all = currencyRepository.findAll();
         return rateRepository.save(rate);
     }
 
