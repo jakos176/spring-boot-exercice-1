@@ -1,20 +1,15 @@
 package com.example.springbootexercice1.application.request;
 
 import com.example.springbootexercice1.domain.model.Rate;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import javax.validation.constraints.NotNull;
 
+@AllArgsConstructor
 @Getter
 public class AddRateRequest {
 
     @NotNull
     private final Rate rate;
-
-    @JsonCreator
-    public AddRateRequest(@JsonProperty("rate") final Rate rate) {
-        this.rate = rate;
-    }
 }
