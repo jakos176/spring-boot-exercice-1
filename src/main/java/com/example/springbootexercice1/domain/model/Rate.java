@@ -31,7 +31,7 @@ public class Rate {
     private Date endDate;
 
     @Column(name = "PRICE")
-    private Integer price;
+    private Double price;
 
     @Column(name = "CURRENCY_CODE")
     private String currency;

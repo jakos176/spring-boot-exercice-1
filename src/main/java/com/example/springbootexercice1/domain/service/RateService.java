@@ -1,20 +1,20 @@
 package com.example.springbootexercice1.domain.service;
 
+import com.example.springbootexercice1.application.response.DataRateResponse;
+import com.example.springbootexercice1.application.response.DatasRateResponse;
 import com.example.springbootexercice1.domain.model.Rate;
 
 import java.util.Date;
-import java.util.List;
-import java.util.Optional;
 
 public interface RateService {
 
-    Rate addRate(Rate rate);
+    DataRateResponse addRate(Rate rate);
 
-    Optional<Rate> findRateById(Long id);
+    DataRateResponse findRateById(Long id);
 
-    Optional<Rate> updatePriceRate(Long id, Integer price);
+    DataRateResponse updatePriceRate(Long id, Double price);
 
-    Optional<Rate> deleteRate(Long id);
+    DataRateResponse deleteRate(Long id);
 
-    List<Rate> findByDatesAndBrandIdAndProductId(Date date, Long brandId, Long productId);
+    DatasRateResponse findByDatesAndBrandIdAndProductId(Date date, Long brandId, Long productId);
 }
