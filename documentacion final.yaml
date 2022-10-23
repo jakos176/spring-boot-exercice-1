@@ -1,0 +1,182 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:8080
+  description: Generated server url
+paths:
+  /rates/add:
+    post:
+      tags:
+      - rate-controller
+      operationId: addRate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddRateRequest'
+        required: true
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataRateResponse'
+  /rates/updatePrice:
+    patch:
+      tags:
+      - rate-controller
+      operationId: updatePriceRate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePriceRateRequest'
+        required: true
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateResponse'
+  /rates/findById:
+    get:
+      tags:
+      - rate-controller
+      summary: Get a Rate by its id
+      operationId: findRateById
+      parameters:
+      - name: findRateRequest
+        in: query
+        description: Object to find
+        required: true
+        schema:
+          $ref: '#/components/schemas/FindRateRequest'
+      responses:
+        "404":
+          description: Rate not found
+        "400":
+          description: Invalid id supplied
+        "200":
+          description: Rate found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rate'
+  /rates/findByDate:
+    get:
+      tags:
+      - rate-controller
+      operationId: addRate_1
+      parameters:
+      - name: dateRateRequest
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/DateRateRequest'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+  /rates/delete:
+    delete:
+      tags:
+      - rate-controller
+      operationId: deleteRate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FindRateRequest'
+        required: true
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateResponse'
+components:
+  schemas:
+    AddRateRequest:
+      required:
+      - rate
+      type: object
+      properties:
+        rate:
+          $ref: '#/components/schemas/Rate'
+    Rate:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        brandId:
+          type: integer
+          format: int64
+        productId:
+          type: integer
+          format: int64
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        price:
+          type: number
+          format: double
+        currency:
+          type: string
+    Currency:
+      type: object
+      properties:
+        decimals:
+          type: integer
+          format: int32
+        code:
+          type: string
+        symbol:
+          type: string
+    DataRateResponse:
+      type: object
+      properties:
+        rate:
+          $ref: '#/components/schemas/Rate'
+        currency:
+          $ref: '#/components/schemas/Currency'
+    UpdatePriceRateRequest:
+      type: object
+      properties:
+        price:
+          type: number
+          format: double
+        id:
+          type: integer
+          format: int64
+    RateResponse:
+      type: object
+    FindRateRequest:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+    DateRateRequest:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date-time
+        brandId:
+          type: integer
+          format: int64
+        productId:
+          type: integer
+          format: int64
